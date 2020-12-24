@@ -1,19 +1,19 @@
-      routes:
-      - id: after_route
-        uri: http://www.baidu.com
-        predicates:
-        - After=2018-12-25T14:33:47.789+08:00 # 这个路由规则会在东8区的2018-12-25 14:33:47后，将请求都转跳到baidu。
-        - Before=2018-12-25T14:33:47.789+08:00, 2018-12-26T14:33:47.789+08:00 # 这个路由规则会在东8区的2018-12-25 14:33:47前，将请求都转跳到 baidu。
-        - Between=2018-12-25T14:33:47.789+08:00 # 这个路由规则会在东8区的2018-12-25 14:33:47到2018-12-26 14:33:47之间，将请求都转跳到baidu。
-        - Cookie=cookiename, cookievalue # 路由匹配请求存在cookie名为cookiename，cookie内容匹配cookievalue的，将请求转发到baidu。
-        - Header=X-Request-Id, \d+  # 路由匹配存在名为X-Request-Id，内容为数字的header的请求，将请求转发到baidu。
-        - Host=**.somehost.org,**.anotherhost.org # 路由会匹配Host诸如：www.somehost.org 或 beta.somehost.org或www.anotherhost.org等请求。
-        - Method=GET # 路由会匹配到所有GET方法的请求。
-        - Path=/foo/{segment},/bar/{segment} # 上面路由可以匹配诸如：/foo/1 或 /foo/bar 或 /bar/baz等 其中的segment变量可以通过下面方式获取：
+routes:
+- id: after_route
+  uri: http://www.baidu.com
+  predicates:
+  - After=2018-12-25T14:33:47.789+08:00 # 这个路由规则会在东8区的2018-12-25 14:33:47后，将请求都转跳到baidu。
+  - Before=2018-12-25T14:33:47.789+08:00, 2018-12-26T14:33:47.789+08:00 # 这个路由规则会在东8区的2018-12-25 14:33:47前，将请求都转跳到 baidu。
+  - Between=2018-12-25T14:33:47.789+08:00 # 这个路由规则会在东8区的2018-12-25 14:33:47到2018-12-26 14:33:47之间，将请求都转跳到baidu。
+  - Cookie=cookiename, cookievalue # 路由匹配请求存在cookie名为cookiename，cookie内容匹配cookievalue的，将请求转发到baidu。
+  - Header=X-Request-Id, \d+  # 路由匹配存在名为X-Request-Id，内容为数字的header的请求，将请求转发到baidu。
+  - Host=**.somehost.org,**.anotherhost.org # 路由会匹配Host诸如：www.somehost.org 或 beta.somehost.org或www.anotherhost.org等请求。
+  - Method=GET # 路由会匹配到所有GET方法的请求。
+  - Path=/foo/{segment},/bar/{segment} # 上面路由可以匹配诸如：/foo/1 或 /foo/bar 或 /bar/baz等 其中的segment变量可以通过下面方式获取：
 
 #        PathMatchInfo variables = exchange.getAttribute(URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 #        Map<String, String> uriVariables = variables.getUriVariables();
 #        String segment = uriVariables.get("segment");
-        - Query=baz # 路由会匹配所有包含baz查询参数的请求
-        - Query=foo, ba. # 路由会匹配所有包含foo，并且foo的内容为诸如：bar或baz等符合ba.正则规则的请求。
-        - RemoteAddr=192.168.1.1/24 # 上面路由就会匹配RemoteAddr诸如192.168.1.10等请求。
+  - Query=baz # 路由会匹配所有包含baz查询参数的请求
+  - Query=foo, ba. # 路由会匹配所有包含foo，并且foo的内容为诸如：bar或baz等符合ba.正则规则的请求。
+  - RemoteAddr=192.168.1.1/24 # 上面路由就会匹配RemoteAddr诸如192.168.1.10等请求。
